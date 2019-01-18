@@ -19,7 +19,7 @@ import bleshadow.javax.inject.Named;
 import io.reactivex.Scheduler;
 
 @Module(subcomponents = ConnectionComponent.class)
-public class DeviceModule {
+public abstract class DeviceModule {
 
     public static final String MAC_ADDRESS = "mac-address";
     public static final String OPERATION_TIMEOUT = "operation-timeout";
@@ -29,21 +29,10 @@ public class DeviceModule {
     private static final int DEFAULT_OPERATION_TIMEOUT = 30;
     private static final int DEFAULT_DISCONNECT_TIMEOUT = 10;
     private static final int DEFAULT_CONNECT_TIMEOUT = 35;
-    final String macAddress;
-
-    DeviceModule(String macAddress) {
-        this.macAddress = macAddress;
-    }
 
     @Provides
-    BluetoothDevice provideBluetoothDevice(RxBleAdapterWrapper adapterWrapper) {
+    static BluetoothDevice provideBluetoothDevice(@Named(MAC_ADDRESS) String macAddress, RxBleAdapterWrapper adapterWrapper) {
         return adapterWrapper.getRemoteDevice(macAddress);
-    }
-
-    @Provides
-    @Named(MAC_ADDRESS)
-    String provideMacAddress() {
-        return macAddress;
     }
 
     @Provides

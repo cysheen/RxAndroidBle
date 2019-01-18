@@ -3,7 +3,7 @@ ext {
     sourceCompatibilityVersion = JavaVersion.VERSION_1_7
     targetCompatibilityVersion = JavaVersion.VERSION_1_7
     shadowPluginVersion = '2.0.2'
-    daggerVersion = '2.15'
+    daggerVersion = '2.21'
     libs = [
             /* Application dependencies */
             annotations        : "androidx.annotation:annotation:1.0.1",
